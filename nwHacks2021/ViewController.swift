@@ -17,16 +17,14 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     @IBOutlet weak var counterLabel: UILabel!
     @IBOutlet weak var happinessLabel: UILabel!
     @IBOutlet var dogNeutralImage : UIImageView!
-            
-    @IBOutlet weak var detectedTextLabel: UILabel!
-    @IBOutlet weak var colorView: UIView!
-    @IBOutlet weak var startButton: UIButton!
  
     /* Used for the audio */
     let audioEngine = AVAudioEngine()
     let speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer()
     let request = SFSpeechAudioBufferRecognitionRequest()
     var recognitionTask: SFSpeechRecognitionTask?
+    
+    var wasNameCalled : Bool!
     
     func recordAndRecognitionSpeech() {
         //guard
@@ -52,7 +50,11 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         recognitionTask = speechRecognizer?.recognitionTask(with: request, resultHandler: { result, error in
             if let result = result {
                 let voiceRecognitionString = result.bestTranscription.formattedString
-                print("\(voiceRecognitionString)")
+                var text = voiceRecognitionString.split(separator: " ")
+                if((text.popLast() ?? "") == (self.customPetName ?? "")) {
+                    //print("\(text.popLast() ?? "")")
+                    self.wasNameCalled = true
+                }
             } else if let error = error {
                 print(error)
             }
@@ -64,17 +66,49 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     @IBAction public func startButtonTapped(_ sender: UIButton) {
         self.recordAndRecognitionSpeech()
     }
-
+    
+    /* Name input */
+    var customPetName : String!
+    
+    @IBAction func actionButtonPressed(_ touch : UIButton) {
+        showInputAlert()
+        touch.removeFromSuperview()
+    }
+    
+    private func showInputAlert() {
+        let alertController = UIAlertController(title: "Pet Name", message: "What do you want to name your pet?", preferredStyle: .alert)
+        alertController.addTextField(configurationHandler: nil)
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            var _petName = String()
+            if let nameTextField = alertController.textFields?.first,
+               let petName = nameTextField.text {
+                _petName = petName
+            }
+            self.customPetName = _petName
+            //print("\(_petName)")
+        }
+        
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        startButtonTapped(startButton)
+        /* Audio recoginition */
+        recordAndRecognitionSpeech()
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in
+            if(self.wasNameCalled == true) {
+                self.nameWasCalled()
+            }
+        }
+        
         /* Used for gestures */
         dogNeutralImage.loadGif(name: "Shiba-inu-taiki-2")
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
                     self.runCount += 1
-                    print("Number: \(self.runCount)")
+                    //print("Number: \(self.runCount)")
 
                     if self.runCount >= 2 {
                         self.dogNeutralImage.loadGif(name: "Shiba-inu-taiki-2")
@@ -102,6 +136,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         dogNeutralImage.addGestureRecognizer(gestureRecongizerSwipeLeft)
         dogNeutralImage.addGestureRecognizer(gestureRecongizerTap)
         dogNeutralImage.isUserInteractionEnabled = true
+        
     }
 
     @objc func gestureTap(_ gesture: UITapGestureRecognizer) {
@@ -118,8 +153,16 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         runCount = 0
     }
     
+    func nameWasCalled() {
+        dogNeutralImage.loadGif(name: "Shiba-inu-taiki")
+        counter += 20
+        self.wasNameCalled = false
+        runCount = -1
+    }
+    
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         dogNeutralImage.loadGif(name: "Shiba-inu-taiki")
+        runCount = 0
         print("Device was shaken!")
     }
 

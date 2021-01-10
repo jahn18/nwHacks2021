@@ -253,8 +253,9 @@
 				36E8ECD125AB415F004DC7AA /* Confused-Shiba.gif in Resources */,
 				3643CC1025AA93D30006F44F /* LaunchScreen.storyboard in Resources */,
 				3643CC0D25AA93D30006F44F /* Assets.xcassets in Resources */,
-				3643CC4D25AAAD3B0006F44F /* Shiba-inu-taiki.gif in Resources */,
-				3643CC5225AAAD440006F44F /* Shiba-inu-taiki-2.gif in Resources */,
+				9046737A25AAED1D0093E4DE /* Shiba-inu-taiki-3.gif in Resources */,
+				3643CC4D25AAAD3B0006F44F /* Shiba-inu-taiki-2.gif in Resources */,
+				3643CC5225AAAD440006F44F /* Shiba-inu-taiki.gif in Resources */,
 				3643CC0B25AA93D00006F44F /* Main.storyboard in Resources */,
 				36E8ECCC25AB3FA3004DC7AA /* Dizzy-Shiba.gif in Resources */,
 			);

@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import ImageIO
+import MediaPlayer
 
 class ViewController: UIViewController {
     var counter = 0
@@ -19,6 +20,11 @@ class ViewController: UIViewController {
     //    counter += 1
     //    counterLabel.text = "\(counter)"
     //}
+    
+    @IBAction func confusedButton(_ sender: Any) {
+        dogNeutralImage.loadGif(name: "Shiba-inu-taiki-3")
+        runCount = 0
+    }
     
     @IBOutlet var dogNeutralImage : UIImageView!
 
@@ -35,7 +41,7 @@ class ViewController: UIViewController {
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
                     self.runCount += 1
-                    //print("Number: \(self.runCount)")
+                    print("Number: \(self.runCount)")
 
                     if self.runCount >= 2 {
                         self.dogNeutralImage.loadGif(name: "Shiba-inu-taiki-2")
@@ -83,5 +89,7 @@ class ViewController: UIViewController {
         print("Device was shaken!")
     }
 
+    
+    
 }
 

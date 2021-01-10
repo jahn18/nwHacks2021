@@ -8,18 +8,15 @@
 import Foundation
 import UIKit
 import ImageIO
+import Speech
 import MediaPlayer
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     var counter = 0
     var runCount = 0
     
     @IBOutlet weak var counterLabel: UILabel!
     @IBOutlet weak var happinessLabel: UILabel!
-    //@IBAction func buttonTapped(_ sender: Any) {
-    //    counter += 1
-    //    counterLabel.text = "\(counter)"
-    //}
     
     @IBAction func confusedButton(_ sender: Any) {
         dogNeutralImage.loadGif(name: "Shiba-inu-taiki-3")
@@ -27,17 +24,103 @@ class ViewController: UIViewController {
     }
     
     @IBOutlet var dogNeutralImage : UIImageView!
-
+ 
+    /* Used for the audio */
+    let audioEngine = AVAudioEngine()
+    let speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer()
+    let request = SFSpeechAudioBufferRecognitionRequest()
+    var recognitionTask: SFSpeechRecognitionTask?
+    
+    var wasNameCalled : Bool!
+    var wrongNameCalled : Bool!
+    
+    func recordAndRecognitionSpeech() {
+        //guard
+        let node = audioEngine.inputNode //else { return }
+        let recordingFormat = node.outputFormat(forBus: 0)
+        node.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { buffer, _ in
+            self.request.append(buffer)
+        }
+        audioEngine.prepare()
+        do {
+            try audioEngine.start()
+        } catch {
+            return print(error)
+        }
+        
+        guard let myRecognizer = SFSpeechRecognizer() else {
+            return
+        }
+        if !myRecognizer.isAvailable {
+            return
+        }
+        
+        recognitionTask = speechRecognizer?.recognitionTask(with: request, resultHandler: { result, error in
+            if let result = result {
+                let voiceRecognitionString = result.bestTranscription.formattedString
+                var text = voiceRecognitionString.split(separator: " ")
+                //print("\(text.popLast() ?? "")")
+                if((text.popLast()?.lowercased() ?? "") == (self.customPetName?.lowercased() ?? "")) {
+                    self.wasNameCalled = true
+                } else {
+                    if((text.popLast() ?? "") != "") {
+                        self.wrongNameCalled = true
+                    }
+                }
+            } else if let error = error {
+                print(error)
+            }
+        })
+        
+    }
+    
+    
+    @IBAction public func startButtonTapped(_ sender: UIButton) {
+        self.recordAndRecognitionSpeech()
+    }
+    
+    /* Name input */
+    var customPetName : String!
+    
+    @IBAction func actionButtonPressed(_ touch : UIButton) {
+        showInputAlert()
+        touch.removeFromSuperview()
+    }
+    
+    private func showInputAlert() {
+        let alertController = UIAlertController(title: "Pet Name", message: "What do you want to name your pet?", preferredStyle: .alert)
+        alertController.addTextField(configurationHandler: nil)
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            var _petName = String()
+            if let nameTextField = alertController.textFields?.first,
+               let petName = nameTextField.text {
+                _petName = petName
+            }
+            self.customPetName = _petName
+            //print("\(_petName)")
+        }
+        
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dogNeutralImage.loadGif(name: "Shiba-inu-taiki-2")
-        //dogNeutralImage.isHidden = true
+        self.view.backgroundColor = .white
         
-        //let myView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-        //myView.backgroundColor = .red
-        //myView.center = view.center
-        //view.addSubview(myView)
+        /* Audio recoginition */
+        recordAndRecognitionSpeech()
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+            if(self.wasNameCalled == true) {
+                self.nameWasCalled()
+            } //else if (self.wrongNameCalled == true) {
+                //self.wrongNameWasCalled()
+            //}
+        }
+        
+        /* Used for gestures */
+        dogNeutralImage.loadGif(name: "Shiba-inu-taiki-2")
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
                     self.runCount += 1
@@ -69,6 +152,7 @@ class ViewController: UIViewController {
         dogNeutralImage.addGestureRecognizer(gestureRecongizerSwipeLeft)
         dogNeutralImage.addGestureRecognizer(gestureRecongizerTap)
         dogNeutralImage.isUserInteractionEnabled = true
+        
     }
 
     @objc func gestureTap(_ gesture: UITapGestureRecognizer) {
@@ -85,8 +169,25 @@ class ViewController: UIViewController {
         runCount = 0
     }
     
+    func nameWasCalled() {
+        dogNeutralImage.loadGif(name: "Shiba-inu-taiki")
+        counter += 25
+        counterLabel.text = "\(counter)"
+        self.wasNameCalled = false
+        runCount = -1
+    }
+    
+    func wrongNameWasCalled() {
+        dogNeutralImage.loadGif(name: "Confused-Shiba")
+        self.wrongNameCalled = false
+        runCount = 0
+    }
+    
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        print("Device was shaken!")
+        dogNeutralImage.loadGif(name: "Dizzy-Shiba")
+        counter -= 3
+        counterLabel.text = "\(counter)"
+        runCount = -2
     }
 
     

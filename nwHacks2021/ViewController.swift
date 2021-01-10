@@ -5,42 +5,66 @@
 //  Created by joeahn@cisco.com on 2021-01-09.
 //
 
+import Foundation
 import UIKit
+import ImageIO
 
 class ViewController: UIViewController {
+    
+    @IBOutlet var dogNeutralImage : UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let myView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-        myView.backgroundColor = .red
-        myView.center = view.center
-        view.addSubview(myView)
+        dogNeutralImage.loadGif(name: "Shiba-inu-taiki-2")
+        //dogNeutralImage.isHidden = true
         
-        let gestureRecongizerSwipe = UISwipeGestureRecognizer(target: self, action: #selector(gestureSwipe(_:)))
-        gestureRecongizerSwipe.direction = .right
-        gestureRecongizerSwipe.numberOfTouchesRequired = 1
+        //let myView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+        //myView.backgroundColor = .red
+        //myView.center = view.center
+        //view.addSubview(myView)
+        
+        let gestureRecongizerSwipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(gestureSwipe(_:)))
+        gestureRecongizerSwipeLeft.direction = .left
+        gestureRecongizerSwipeLeft.numberOfTouchesRequired = 1
+        
+        let gestureRecongizerSwipeRight = UISwipeGestureRecognizer(target: self, action: #selector(gestureSwipe(_:)))
+        gestureRecongizerSwipeRight.direction = .right
+        gestureRecongizerSwipeRight.numberOfTouchesRequired = 1
+        
+        let gestureRecongizerSwipeTop = UISwipeGestureRecognizer(target: self, action: #selector(gestureSwipe(_:)))
+        gestureRecongizerSwipeTop.direction = .up
+        gestureRecongizerSwipeTop.numberOfTouchesRequired = 1
+        
+        let gestureRecongizerSwipeBottom = UISwipeGestureRecognizer(target: self, action: #selector(gestureSwipe(_:)))
+        gestureRecongizerSwipeBottom.direction = .down
+        gestureRecongizerSwipeBottom.numberOfTouchesRequired = 1
         
         let gestureRecongizerTap = UITapGestureRecognizer(target: self, action: #selector(gestureTap(_:)))
         gestureRecongizerTap.numberOfTapsRequired = 1
         gestureRecongizerTap.numberOfTouchesRequired = 1
         
-        myView.addGestureRecognizer(gestureRecongizerSwipe)
-        myView.addGestureRecognizer(gestureRecongizerTap)
-        myView.isUserInteractionEnabled = true
+        dogNeutralImage.addGestureRecognizer(gestureRecongizerSwipeTop)
+        dogNeutralImage.addGestureRecognizer(gestureRecongizerSwipeBottom)
+        dogNeutralImage.addGestureRecognizer(gestureRecongizerSwipeRight)
+        dogNeutralImage.addGestureRecognizer(gestureRecongizerSwipeLeft)
+        dogNeutralImage.addGestureRecognizer(gestureRecongizerTap)
+        dogNeutralImage.isUserInteractionEnabled = true
     }
 
     @objc func gestureTap(_ gesture: UITapGestureRecognizer) {
         if let fireView = gesture.view {
             fireView.backgroundColor = .blue
-        } else {
-            print("gesture fired")
         }
     }
     
     @objc func gestureSwipe(_ gesture: UISwipeGestureRecognizer) {
-        if let fireView = gesture.view {
-            fireView.backgroundColor = .yellow
+        if gesture.direction == .right {
+            let fireView = gesture.view
+            fireView?.backgroundColor = .red
+        } else if gesture.direction == .left {
+            let fireView = gesture.view
+            fireView?.backgroundColor = .black
         }
     }
     

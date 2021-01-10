@@ -11,6 +11,7 @@ import ImageIO
 
 class ViewController: UIViewController {
     var counter = 0
+    var runCount = 0
     
     @IBOutlet weak var counterLabel: UILabel!
     @IBOutlet weak var happinessLabel: UILabel!
@@ -31,6 +32,15 @@ class ViewController: UIViewController {
         //myView.backgroundColor = .red
         //myView.center = view.center
         //view.addSubview(myView)
+        
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+                    self.runCount += 1
+                    //print("Number: \(self.runCount)")
+
+                    if self.runCount >= 2 {
+                        self.dogNeutralImage.loadGif(name: "Shiba-inu-taiki-2")
+                    }
+                }
         
         let gestureRecongizerSwipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(gestureSwipe(_:)))
         gestureRecongizerSwipeLeft.direction = .left
@@ -64,12 +74,14 @@ class ViewController: UIViewController {
         counter += 1
         counterLabel.text = "\(counter)"
         dogNeutralImage.loadGif(name: "Shiba-inu-taiki")
+        runCount = 0
     }
     
     @objc func gestureSwipe(_ gesture: UISwipeGestureRecognizer) {
         counter += 1
         counterLabel.text = "\(counter)"
         dogNeutralImage.loadGif(name: "Shiba-inu-taiki")
+        runCount = 0
     }
     
 

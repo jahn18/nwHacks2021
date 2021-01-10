@@ -53,19 +53,11 @@ class ViewController: UIViewController {
     }
 
     @objc func gestureTap(_ gesture: UITapGestureRecognizer) {
-        if let fireView = gesture.view {
-            fireView.backgroundColor = .blue
-        }
+        dogNeutralImage.loadGif(name: "Shiba-inu-taiki")
     }
     
     @objc func gestureSwipe(_ gesture: UISwipeGestureRecognizer) {
-        if gesture.direction == .right {
-            let fireView = gesture.view
-            fireView?.backgroundColor = .red
-        } else if gesture.direction == .left {
-            let fireView = gesture.view
-            fireView?.backgroundColor = .black
-        }
+        dogNeutralImage.loadGif(name: "Shiba-inu-taiki")
     }
     
 

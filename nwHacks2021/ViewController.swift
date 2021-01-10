@@ -73,12 +73,15 @@ class ViewController: UIViewController {
     }
     
     @objc func gestureSwipe(_ gesture: UISwipeGestureRecognizer) {
-        counter += 1
+        counter += 5
         counterLabel.text = "\(counter)"
         dogNeutralImage.loadGif(name: "Shiba-inu-taiki")
         runCount = 0
     }
     
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        print("Device was shaken!")
+    }
 
 }
 

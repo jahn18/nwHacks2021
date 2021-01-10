@@ -19,7 +19,6 @@
 		3643CC4D25AAAD3B0006F44F /* Shiba-inu-taiki.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3643CC4C25AAAD3B0006F44F /* Shiba-inu-taiki.gif */; };
 		3643CC5225AAAD440006F44F /* Shiba-inu-taiki-2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3643CC5125AAAD440006F44F /* Shiba-inu-taiki-2.gif */; };
 		364578FF25AB83FF007400D6 /* Confused-Shiba-2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 364578FE25AB83FF007400D6 /* Confused-Shiba-2.gif */; };
-		36E8ECB625AB001D004DC7AA /* unnamed-2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 36E8ECB525AB001D004DC7AA /* unnamed-2.gif */; };
 		36E8ECCC25AB3FA3004DC7AA /* Dizzy-Shiba.gif in Resources */ = {isa = PBXBuildFile; fileRef = 36E8ECCB25AB3FA3004DC7AA /* Dizzy-Shiba.gif */; };
 /* End PBXBuildFile section */
 
@@ -59,7 +58,6 @@
 		3643CC4C25AAAD3B0006F44F /* Shiba-inu-taiki.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "Shiba-inu-taiki.gif"; path = "../../../Downloads/Shiba-inu-taiki.gif"; sourceTree = "<group>"; };
 		3643CC5125AAAD440006F44F /* Shiba-inu-taiki-2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "Shiba-inu-taiki-2.gif"; path = "../../../Downloads/Shiba-inu-taiki-2.gif"; sourceTree = "<group>"; };
 		364578FE25AB83FF007400D6 /* Confused-Shiba-2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "Confused-Shiba-2.gif"; path = "../../../Downloads/Confused-Shiba-2.gif"; sourceTree = "<group>"; };
-		36E8ECB525AB001D004DC7AA /* unnamed-2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "unnamed-2.gif"; path = "../../../Downloads/unnamed-2.gif"; sourceTree = "<group>"; };
 		36E8ECCB25AB3FA3004DC7AA /* Dizzy-Shiba.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "Dizzy-Shiba.gif"; path = "../../../Downloads/Dizzy-Shiba.gif"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,7 +111,6 @@
 			children = (
 				364578FE25AB83FF007400D6 /* Confused-Shiba-2.gif */,
 				36E8ECCB25AB3FA3004DC7AA /* Dizzy-Shiba.gif */,
-				36E8ECB525AB001D004DC7AA /* unnamed-2.gif */,
 				3643CC5125AAAD440006F44F /* Shiba-inu-taiki-2.gif */,
 				3643CC4C25AAAD3B0006F44F /* Shiba-inu-taiki.gif */,
 				3643CC4725AAACCD0006F44F /* Gif.swift */,
@@ -249,7 +246,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36E8ECB625AB001D004DC7AA /* unnamed-2.gif in Resources */,
 				3643CC1025AA93D30006F44F /* LaunchScreen.storyboard in Resources */,
 				3643CC0D25AA93D30006F44F /* Assets.xcassets in Resources */,
 				3643CC4D25AAAD3B0006F44F /* Shiba-inu-taiki.gif in Resources */,

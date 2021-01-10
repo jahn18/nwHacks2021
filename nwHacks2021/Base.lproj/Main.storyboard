@@ -39,6 +39,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="actionButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="M1h-o4-f68"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qUE-dq-159">
                                 <rect key="frame" x="115" y="55" width="267" height="165"/>

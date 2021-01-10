@@ -44,23 +44,18 @@ class ViewController: UIViewController {
         
         let gestureRecongizerSwipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(gestureSwipe(_:)))
         gestureRecongizerSwipeLeft.direction = .left
-        gestureRecongizerSwipeLeft.numberOfTouchesRequired = 1
         
         let gestureRecongizerSwipeRight = UISwipeGestureRecognizer(target: self, action: #selector(gestureSwipe(_:)))
         gestureRecongizerSwipeRight.direction = .right
-        gestureRecongizerSwipeRight.numberOfTouchesRequired = 1
         
         let gestureRecongizerSwipeTop = UISwipeGestureRecognizer(target: self, action: #selector(gestureSwipe(_:)))
         gestureRecongizerSwipeTop.direction = .up
-        gestureRecongizerSwipeTop.numberOfTouchesRequired = 1
         
         let gestureRecongizerSwipeBottom = UISwipeGestureRecognizer(target: self, action: #selector(gestureSwipe(_:)))
         gestureRecongizerSwipeBottom.direction = .down
-        gestureRecongizerSwipeBottom.numberOfTouchesRequired = 1
         
         let gestureRecongizerTap = UITapGestureRecognizer(target: self, action: #selector(gestureTap(_:)))
         gestureRecongizerTap.numberOfTapsRequired = 1
-        gestureRecongizerTap.numberOfTouchesRequired = 1
         
         dogNeutralImage.addGestureRecognizer(gestureRecongizerSwipeTop)
         dogNeutralImage.addGestureRecognizer(gestureRecongizerSwipeBottom)

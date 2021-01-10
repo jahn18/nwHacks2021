@@ -31,17 +31,23 @@
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="B9n-iU-etZ"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X9k-b1-tdy">
+                                <rect key="frame" x="20" y="228" width="374" height="668"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
                         <outlet property="counterLabel" destination="CEm-mO-hxY" id="DTC-uQ-SF4"/>
+                        <outlet property="dogNeutralImage" destination="X9k-b1-tdy" id="S6g-MA-8Jl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="113.04347826086958" y="115.84821428571428"/>
+            <point key="canvasLocation" x="-197.10144927536234" y="99.776785714285708"/>
         </scene>
     </scenes>
     <resources>

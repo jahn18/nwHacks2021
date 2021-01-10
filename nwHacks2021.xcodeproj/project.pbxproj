@@ -15,6 +15,9 @@
 		3643CC1025AA93D30006F44F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3643CC0E25AA93D30006F44F /* LaunchScreen.storyboard */; };
 		3643CC1B25AA93D30006F44F /* nwHacks2021Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3643CC1A25AA93D30006F44F /* nwHacks2021Tests.swift */; };
 		3643CC2625AA93D30006F44F /* nwHacks2021UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3643CC2525AA93D30006F44F /* nwHacks2021UITests.swift */; };
+		3643CC4825AAACCD0006F44F /* Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3643CC4725AAACCD0006F44F /* Gif.swift */; };
+		3643CC4D25AAAD3B0006F44F /* Shiba-inu-taiki.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3643CC4C25AAAD3B0006F44F /* Shiba-inu-taiki.gif */; };
+		3643CC5225AAAD440006F44F /* Shiba-inu-taiki-2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3643CC5125AAAD440006F44F /* Shiba-inu-taiki-2.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		3643CC2125AA93D30006F44F /* nwHacks2021UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nwHacks2021UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3643CC2525AA93D30006F44F /* nwHacks2021UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nwHacks2021UITests.swift; sourceTree = "<group>"; };
 		3643CC2725AA93D30006F44F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3643CC4725AAACCD0006F44F /* Gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gif.swift; sourceTree = "<group>"; };
+		3643CC4C25AAAD3B0006F44F /* Shiba-inu-taiki.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "Shiba-inu-taiki.gif"; path = "../../../Downloads/Shiba-inu-taiki.gif"; sourceTree = "<group>"; };
+		3643CC5125AAAD440006F44F /* Shiba-inu-taiki-2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "Shiba-inu-taiki-2.gif"; path = "../../../Downloads/Shiba-inu-taiki-2.gif"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +105,12 @@
 		3643CC0225AA93D00006F44F /* nwHacks2021 */ = {
 			isa = PBXGroup;
 			children = (
+				3643CC5125AAAD440006F44F /* Shiba-inu-taiki-2.gif */,
+				3643CC4C25AAAD3B0006F44F /* Shiba-inu-taiki.gif */,
+				3643CC4725AAACCD0006F44F /* Gif.swift */,
+				3643CC0725AA93D00006F44F /* ViewController.swift */,
 				3643CC0325AA93D00006F44F /* AppDelegate.swift */,
 				3643CC0525AA93D00006F44F /* SceneDelegate.swift */,
-				3643CC0725AA93D00006F44F /* ViewController.swift */,
 				3643CC0925AA93D00006F44F /* Main.storyboard */,
 				3643CC0C25AA93D30006F44F /* Assets.xcassets */,
 				3643CC0E25AA93D30006F44F /* LaunchScreen.storyboard */,
@@ -233,6 +242,8 @@
 			files = (
 				3643CC1025AA93D30006F44F /* LaunchScreen.storyboard in Resources */,
 				3643CC0D25AA93D30006F44F /* Assets.xcassets in Resources */,
+				3643CC4D25AAAD3B0006F44F /* Shiba-inu-taiki.gif in Resources */,
+				3643CC5225AAAD440006F44F /* Shiba-inu-taiki-2.gif in Resources */,
 				3643CC0B25AA93D00006F44F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,6 +271,7 @@
 			files = (
 				3643CC0825AA93D00006F44F /* ViewController.swift in Sources */,
 				3643CC0425AA93D00006F44F /* AppDelegate.swift in Sources */,
+				3643CC4825AAACCD0006F44F /* Gif.swift in Sources */,
 				3643CC0625AA93D00006F44F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

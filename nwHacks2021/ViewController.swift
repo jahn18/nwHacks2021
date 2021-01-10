@@ -16,6 +16,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     
     @IBOutlet weak var counterLabel: UILabel!
     @IBOutlet weak var happinessLabel: UILabel!
+    
     @IBOutlet var dogNeutralImage : UIImageView!
  
     /* Used for the audio */
@@ -25,6 +26,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     var recognitionTask: SFSpeechRecognitionTask?
     
     var wasNameCalled : Bool!
+    var wrongNameCalled : Bool!
     
     func recordAndRecognitionSpeech() {
         //guard
@@ -51,9 +53,13 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
             if let result = result {
                 let voiceRecognitionString = result.bestTranscription.formattedString
                 var text = voiceRecognitionString.split(separator: " ")
-                if((text.popLast() ?? "") == (self.customPetName ?? "")) {
-                    //print("\(text.popLast() ?? "")")
+                //print("\(text.popLast() ?? "")")
+                if((text.popLast()?.lowercased() ?? "") == (self.customPetName?.lowercased() ?? "")) {
                     self.wasNameCalled = true
+                } else {
+                    if((text.popLast() ?? "") != "") {
+                        self.wrongNameCalled = true
+                    }
                 }
             } else if let error = error {
                 print(error)
@@ -95,12 +101,16 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = .white
+        
         /* Audio recoginition */
         recordAndRecognitionSpeech()
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
             if(self.wasNameCalled == true) {
                 self.nameWasCalled()
-            }
+            } //else if (self.wrongNameCalled == true) {
+                //self.wrongNameWasCalled()
+            //}
         }
         
         /* Used for gestures */
@@ -155,15 +165,23 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     
     func nameWasCalled() {
         dogNeutralImage.loadGif(name: "Shiba-inu-taiki")
-        counter += 20
+        counter += 25
+        counterLabel.text = "\(counter)"
         self.wasNameCalled = false
         runCount = -1
     }
     
-    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        dogNeutralImage.loadGif(name: "Shiba-inu-taiki")
+    func wrongNameWasCalled() {
+        dogNeutralImage.loadGif(name: "Confused-Shiba")
+        self.wrongNameCalled = false
         runCount = 0
-        print("Device was shaken!")
+    }
+    
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        dogNeutralImage.loadGif(name: "Dizzy-Shiba")
+        counter -= 3
+        counterLabel.text = "\(counter)"
+        runCount = -2
     }
 
 }

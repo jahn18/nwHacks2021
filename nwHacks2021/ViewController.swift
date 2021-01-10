@@ -11,12 +11,13 @@ import ImageIO
 
 class ViewController: UIViewController {
     var counter = 0
-    @IBOutlet weak var counterLabel: UILabel!
     
-    @IBAction func buttonTapped(_ sender: Any) {
-        counter += 1
-        counterLabel.text = "\(counter)"
-    }
+    @IBOutlet weak var counterLabel: UILabel!
+    @IBOutlet weak var happinessLabel: UILabel!
+    //@IBAction func buttonTapped(_ sender: Any) {
+    //    counter += 1
+    //    counterLabel.text = "\(counter)"
+    //}
     
     @IBOutlet var dogNeutralImage : UIImageView!
 
@@ -60,10 +61,14 @@ class ViewController: UIViewController {
     }
 
     @objc func gestureTap(_ gesture: UITapGestureRecognizer) {
+        counter += 1
+        counterLabel.text = "\(counter)"
         dogNeutralImage.loadGif(name: "Shiba-inu-taiki")
     }
     
     @objc func gestureSwipe(_ gesture: UISwipeGestureRecognizer) {
+        counter += 1
+        counterLabel.text = "\(counter)"
         dogNeutralImage.loadGif(name: "Shiba-inu-taiki")
     }
     

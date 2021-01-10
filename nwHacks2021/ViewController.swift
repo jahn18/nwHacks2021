@@ -115,7 +115,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
             if(self.wasNameCalled == true) {
                 self.nameWasCalled()
             } //else if (self.wrongNameCalled == true) {
-                //self.wrongNameWasCalled()
+              //  self.wrongNameWasCalled()
             //}
         }
         
@@ -178,7 +178,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     }
     
     func wrongNameWasCalled() {
-        dogNeutralImage.loadGif(name: "Confused-Shiba")
+        dogNeutralImage.loadGif(name: "Confused-Shiba-2")
         self.wrongNameCalled = false
         runCount = 0
     }

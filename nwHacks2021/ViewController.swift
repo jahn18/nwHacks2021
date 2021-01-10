@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import ImageIO
 import Speech
+import MediaPlayer
 
 class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     var counter = 0
@@ -16,6 +17,11 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     
     @IBOutlet weak var counterLabel: UILabel!
     @IBOutlet weak var happinessLabel: UILabel!
+    
+    @IBAction func confusedButton(_ sender: Any) {
+        dogNeutralImage.loadGif(name: "Shiba-inu-taiki-3")
+        runCount = 0
+    }
     
     @IBOutlet var dogNeutralImage : UIImageView!
  
@@ -118,7 +124,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
                     self.runCount += 1
-                    //print("Number: \(self.runCount)")
+                    print("Number: \(self.runCount)")
 
                     if self.runCount >= 2 {
                         self.dogNeutralImage.loadGif(name: "Shiba-inu-taiki-2")
@@ -184,5 +190,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         runCount = -2
     }
 
+    
+    
 }
 
